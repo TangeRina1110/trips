@@ -9,6 +9,7 @@
 // module.exports = router;
 const URL = process.env.MONGO_URI;
 const FrontURL = process.env.REACT_APP_FRONTEND_URL;
+//const FrontURL = 'http://localhost:3000';
 //const URL = 'mongodb://localhost:27017/tripbox';
 const {MongoClient} = require('mongodb');
 const express = require('express');

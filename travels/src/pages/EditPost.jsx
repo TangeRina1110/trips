@@ -14,7 +14,7 @@ export default function EditPost(){
 
 
     useEffect(() => {
-        fetch(`${backendUrl}/post`+id)
+        fetch(`${backendUrl}/post/`+id)
             .then(response =>{
                 response.json().then(postInfo =>{
                     setTitle(postInfo.title);

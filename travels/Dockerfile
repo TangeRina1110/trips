@@ -13,8 +13,12 @@ RUN npm install && npm install -g serve
 # Копируем все файлы в контейнер
 COPY . .
 # Устанавливаем переменные окружения для frontend
+# Собираем React приложение
 # Собираем React
 RUN npm run build
+
+# Экспонируем порт для frontend
 EXPOSE 3000
-# Запускаем приложение
-CMD ["serve", "-s", "build", "-l", "3000"]
+
+# Запускаем сервер с помощью serve
+CMD ["serve", "-s", "build"]
