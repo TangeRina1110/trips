@@ -21,13 +21,14 @@ COPY . .
 RUN npm run build
 
 # Устанавливаем базовый образ для сервера Nginx
-FROM nginx:alpine
+#FROM nginx:alpine
 
 # Копируем файлы сборки React приложения в папку для статических файлов Nginx
-COPY --from=0 /app/build /usr/share/nginx/html
+#COPY --from=0 /app/build /usr/share/nginx/html
 
 # Экспонируем порт
-EXPOSE 80
+EXPOSE 3000
 
 # Запускаем Nginx
-CMD ["nginx", "-g", "daemon off;"]
+#CMD ["nginx", "-g", "daemon off;"]
+CMD ["serve", "-s", "build"]
