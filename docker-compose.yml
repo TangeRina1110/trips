@@ -24,7 +24,7 @@ services:
       MONGO_URI: mongodb://mongo:27017/tripbox
       REACT_APP_FRONTEND_URL: http://frontend:3000
     volumes:
-      - ./backend:/app
+      - ./backend:/backend
 
     deploy:
       restart_policy:
@@ -40,7 +40,7 @@ services:
     depends_on:
       - backend
     volumes:
-      - ./frontend:/app
+      - ./travels:/frontend
     environment:
       REACT_APP_BACKEND_URL: http://backend:4000
 
