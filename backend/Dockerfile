@@ -3,13 +3,14 @@
 #
 #ENTRYPOINT ["top", "-b"]
 # Используем официальный Node.js образ как базовый
-FROM node:14
+FROM node:latest
 
 # Устанавливаем рабочую директорию внутри контейнера
 WORKDIR /app
 
 # Копируем package.json и package-lock.json
 COPY package*.json ./
+
 
 # Устанавливаем зависимости
 RUN npm install

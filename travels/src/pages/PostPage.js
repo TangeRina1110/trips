@@ -10,8 +10,10 @@ export default function PostPage(){
      const[comments, setComments] = useState([]);
      const[commentText,setCommentText] = useState('');
      const [commentSend, setCommentSend] = useState(false);
-     useEffect(() => {
-        fetch(`http://localhost:3000/post/${id}`)
+     const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
+    useEffect(() => {
+        fetch(`${backendUrl}/post/${id}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -26,7 +28,7 @@ export default function PostPage(){
             });
      }, [id]);
     useEffect(() => {
-        fetch('http://localhost:4000/comment?post='+id).then(response => {
+        fetch(`${backendUrl}/comment?post=`+id).then(response => {
             response.json().then(comments => {
                 setComments(comments);
 
@@ -36,7 +38,7 @@ export default function PostPage(){
     async function createComment(ev){
 
         ev.preventDefault();
-        const response = await fetch('http://localhost:4000/comment', {
+        const response = await fetch(`${backendUrl}/comment`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

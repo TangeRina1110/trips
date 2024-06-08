@@ -7,9 +7,11 @@ export default function LoginPage(){
     const [password, setPassword] = useState('');
     const [redirect,setRedirect] = useState(false);
     const {setUserInfo} = useContext(UserContext);
-   async function login(ev){
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
+    async function login(ev){
        ev.preventDefault();
-       const response = await fetch('http://localhost:4000/login', {
+       const response = await fetch(`${backendUrl}/login`, {
          method: 'POST',
          body: JSON.stringify({username, password}),
          headers: {'Content-Type': 'application/json'},

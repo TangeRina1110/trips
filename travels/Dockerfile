@@ -1,9 +1,5 @@
-#FROM ubuntu:latest
-#LABEL authors="Екатерина"
-#
-#ENTRYPOINT ["top", "-b"]
 # Используем официальный Node.js образ как базовый
-FROM node:14
+FROM node:latest
 
 # Устанавливаем рабочую директорию внутри контейнера
 WORKDIR /app
@@ -11,24 +7,20 @@ WORKDIR /app
 # Копируем package.json и package-lock.json
 COPY package*.json ./
 
-# Устанавливаем зависимости
-RUN npm install
+# Устанавливаем зависимости, включая serve
+RUN npm install && npm install -g serve
 
 # Копируем все файлы в контейнер
 COPY . .
 
+# Устанавливаем переменные окружения для frontend
+
+
 # Собираем React приложение
 RUN npm run build
 
-# Устанавливаем базовый образ для сервера Nginx
-#FROM nginx:alpine
-
-# Копируем файлы сборки React приложения в папку для статических файлов Nginx
-#COPY --from=0 /app/build /usr/share/nginx/html
-
-# Экспонируем порт
+# Экспонируем порт для frontend
 EXPOSE 3000
 
-# Запускаем Nginx
-#CMD ["nginx", "-g", "daemon off;"]
+# Запускаем сервер с помощью serve
 CMD ["serve", "-s", "build"]

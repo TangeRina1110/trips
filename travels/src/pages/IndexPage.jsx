@@ -3,16 +3,17 @@ import {useEffect, useState} from "react";
 export default function IndexPage() {
     const [posts,setPosts] = useState([]);
     const [search, setSearch] = useState('');
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
     useEffect(() => {
         if (search === ''){
-            fetch('http://localhost:4000/post').then(response => {
+            fetch(`${backendUrl}/post`).then(response => {
                 response.json().then(posts => {
                     setPosts(posts);
 
                 });
             });
         } else{
-            fetch('http://localhost:4000/post?search='+search).then(response => {
+            fetch(`${backendUrl}/post?search=`+search).then(response => {
                 response.json().then(posts => {
                     setPosts(posts);
 

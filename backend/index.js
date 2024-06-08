@@ -7,7 +7,9 @@
 // });
 
 // module.exports = router;
-const URL = 'mongodb://localhost:27017/tripbox';
+const URL = process.env.MONGO_URI;
+const FrontURL = process.env.REACT_APP_FRONTEND_URL;
+//const URL = 'mongodb://localhost:27017/tripbox';
 const {MongoClient} = require('mongodb');
 const express = require('express');
 const cors = require('cors');
@@ -25,7 +27,7 @@ const salt =bcrypt.genSaltSync(10);
 const multer = require('multer');
 const uploadMiddleware = multer({dest: 'uploads/'});
 const fs  = require('fs');
-app.use(cors({credentials: true,origin: 'http://localhost:3000'})); //возможно другой хост нужно будет
+app.use(cors({credentials: true,origin: FrontURL})); //возможно другой хост нужно будет
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'));// Вызов функции

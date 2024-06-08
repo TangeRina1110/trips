@@ -10,9 +10,11 @@ export default function EditPost(){
     const [files, setFiles] = useState('');
     const [cover, setCover]=useState('');
     const [redirect, setRedirect] = useState(false);
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
 
     useEffect(() => {
-        fetch('http://localhost:4000/post/'+id)
+        fetch(`${backendUrl}/post`+id)
             .then(response =>{
                 response.json().then(postInfo =>{
                     setTitle(postInfo.title);
