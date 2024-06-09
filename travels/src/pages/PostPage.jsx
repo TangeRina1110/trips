@@ -13,6 +13,7 @@ export default function PostPage(){
      const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
     useEffect(() => {
+        console.log(`${backendUrl}/post/${id}`);
         fetch(`${backendUrl}/post/${id}`)
             .then(response => {
                 if (!response.ok) {

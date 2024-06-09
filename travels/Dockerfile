@@ -15,10 +15,11 @@ COPY . .
 # Устанавливаем переменные окружения для frontend
 # Собираем React приложение
 # Собираем React
-RUN npm run build
+#RUN npm run build
 
 # Экспонируем порт для frontend
 EXPOSE 3000
 
 # Запускаем сервер с помощью serve
-CMD ["serve", "-s", "build"]
+CMD ["npm", "run", "dev"]
+#CMD ["serve", "-s", "build"]
